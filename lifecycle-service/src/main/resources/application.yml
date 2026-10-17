@@ -1,0 +1,31 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: lifecycle-service
+  datasource:
+    url: jdbc:h2:mem:lifecycledb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        # No relanzar en bucle: los fallos de negocio se registran como FAILED
+        default-requeue-rejected: false
+        acknowledge-mode: auto
+        retry:
+          enabled: false
+
+logging:
+  level:
+    co.edu.unicauca: INFO
