@@ -1,0 +1,32 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: review-service
+  datasource:
+    url: jdbc:h2:mem:reviewdb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+# URLs de otros servicios (configuración externalizada)
+lifecycle:
+  service:
+    url: http://localhost:8084
+user:
+  service:
+    url: http://localhost:8081
+
+logging:
+  level:
+    co.edu.unicauca: INFO
